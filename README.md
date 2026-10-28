@@ -1,99 +1,120 @@
-# Titanic_ETL
+# 🚢 Titanic Dataset ETL Pipeline | Python + MySQL
 
-A beginner-friendly ETL project using the Titanic passenger dataset.
+## 📌 Project Overview
 
-## Folder structure
+This project demonstrates a hands-on **ETL (Extract, Transform, Load) pipeline** using the Titanic passenger dataset. It was developed to practice data extraction, data cleaning, validation, and database integration using Python in VS Code and MySQL.
+
+The project also includes batch processing and testing modules to make the workflow more organized and reliable.
+
+## 🎯 Objectives
+
+- Extract the Titanic dataset using Python.
+- Clean and transform missing values.
+- Convert categorical data into numerical values.
+- Validate the cleaned dataset.
+- Load processed data into a MySQL database.
+- Practice modular programming and batch processing.
+
+## 🛠️ Technologies Used
+
+- Python
+- Pandas
+- Seaborn
+- SQLAlchemy
+- MySQL
+- MySQL Workbench
+- VS Code
+- Pytest
+
+## 🔄 Project Workflow
+
+**Extract → Transform → Validate → Load**
+
+### 1. Extract
+
+- Load the Titanic dataset using Seaborn.
+- Inspect the dataset dimensions, columns, data types, and missing values.
+
+### 2. Transform
+
+- Fill missing `age` values using the median.
+- Fill missing `embarked` values using the mode.
+- Remove the `deck` and `embark_town` columns.
+- Encode `sex` as numerical values: male = 0 and female = 1.
+
+### 3. Validate
+
+- Check whether missing values remain.
+- Verify that the `sex` column contains only 0 and 1.
+- Confirm that the transformed data satisfies the defined validation rules.
+
+### 4. Load
+
+- Connect Python to MySQL using SQLAlchemy.
+- Load the cleaned dataset into the `Titanic_ETL` database.
+- Manage the database connection and release resources after loading.
+
+### 5. Batch Processing
+
+- Process data in configurable batches.
+- Validate each batch before loading.
+- Support appending subsequent batches to the target table.
+
+## 📂 Project Structure
 
 ```text
-Titanic_ETL/
-├── data/
-│   └── train.csv
-├── output/
-├── config.py
+Titanic-ETL-Pipeline/
 ├── extract.py
 ├── transform.py
 ├── validate.py
 ├── load.py
 ├── pipeline.py
 ├── batch_pipeline.py
+├── config.py
 ├── test_connection.py
 ├── test_extract.py
 ├── test_transform.py
 ├── test_validate.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
-## 1. Setup
+## 🚀 How to Run
 
-Use Python 3.9 or newer. Open a terminal in this folder and run:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-## 2. Add the dataset
-
-Download the Titanic `train.csv` file from the Kaggle Titanic competition and place it in the `data/` folder.
-
-Expected path:
-
-```text
-Titanic_ETL/data/train.csv
-```
-
-The standard Kaggle training file includes columns such as `PassengerId`, `Survived`, `Pclass`, `Name`, `Sex`, `Age`, and `Fare`.
-
-## 3. Run the single-file pipeline
+1. Install Python and MySQL.
+2. Create the `Titanic_ETL` database in MySQL.
+3. Configure database credentials securely using environment variables.
+4. Install the required Python dependencies.
+5. Run the ETL pipeline:
 
 ```bash
 python pipeline.py
 ```
 
-The pipeline extracts the CSV, validates it, cleans and standardizes values, validates the cleaned data, and writes the results to `output/`.
-
-Outputs:
-- `output/titanic_cleaned.csv`
-- `output/validation_report.txt`
-
-## 4. Run batch processing
-
-Put one or more Titanic-format CSV files in `data/`, then run:
+To run batch processing:
 
 ```bash
 python batch_pipeline.py
 ```
 
-Batch results are saved under `output/batch/`.
-
-## 5. Run tests
+To run tests:
 
 ```bash
 python -m pytest -q
 ```
 
-Or check the Python environment only:
+## 📚 Key Learnings
 
-```bash
-python test_connection.py
-```
+- Understanding the ETL process.
+- Cleaning and transforming real-world data.
+- Connecting Python applications to MySQL.
+- Writing modular and reusable Python code.
+- Implementing data validation and batch processing.
+- Organizing a data engineering project using Git and GitHub.
 
-## What each file does
+## 👩‍💻 Project Status
 
-- `config.py`: Stores file paths and required column names.
-- `extract.py`: Reads data from the source CSV.
-- `transform.py`: Cleans text, fills selected missing values, and removes duplicate passenger IDs.
-- `validate.py`: Checks required columns and basic data rules.
-- `load.py`: Saves cleaned data and a validation report.
-- `pipeline.py`: Runs all ETL stages once.
-- `batch_pipeline.py`: Processes all CSV files in the data folder.
-- `test_connection.py`: Checks Python and pandas.
-- `test_extract.py`: Tests extraction.
-- `test_transform.py`: Tests transformation.
-- `test_validate.py`: Tests validation.
+Hands-on learning project — built to strengthen my Python, SQL, and data engineering fundamentals.
 
-## Notes
-
-- This project does not include the Titanic dataset. Download it separately and put `train.csv` in `data/`.
-- The transformation fills missing `Age` and `Fare` values with their column median, fills missing `Embarked` with its most common value, and labels missing `Cabin` values as `Unknown`.
-- This is an educational example. For real production data, agree on validation rules with the data owner before dropping or filling values.
+**Extract → Transform → Validate → Load → Learn 🚀**
